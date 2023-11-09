@@ -34,6 +34,16 @@ export class HeroesService {
  
     return this.http.put(`${this.url}/heroes/${heroe.id}.json`,heroeTemp)
  
+
+
+   }
+
+
+
+
+   getHeroe(id:string){
+    return this.http.get(`${this.url}/heroes.json`)
+
    }
 
 
@@ -43,20 +53,21 @@ export class HeroesService {
       map(this.crearArreglo)
     );
    }
-   private crearArreglo(heroesObj:object){
+   private crearArreglo(heroesObj: { [key: string]: HeroeModel } | any): HeroeModel[] {
+    const heroes: HeroeModel[] = [];
 
+    if (heroesObj === null) {
+      return [];
+    }
 
-    const heroes:HeroeModel[]=[];
+    Object.keys(heroesObj).forEach(key => {
+      const heroe: HeroeModel = heroesObj[key];
+      heroes.push(heroe);
+    });
 
-      Object.keys(heroesObj).forEach(key=>{
-      /*  const heroe:HeroeModel =heroesObj[key]; 
-         heroe.id=key;  */
-      })
     return heroes;
-   }
-
+  }
 
 
 }
-
 /* return this.http.put(`${this.url}/heroes/${heroe.id}.json`,heroeTemp) */

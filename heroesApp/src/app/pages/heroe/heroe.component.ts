@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { HeroeModel } from 'src/app/models/heroe.model';
 import { NgForm } from '@angular/forms';
 import { HeroesService } from '../../services/heroes.service';
@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,12 +14,32 @@ import { Observable } from 'rxjs';
   templateUrl: './heroe.component.html',
   styleUrls: ['./heroe.component.css']
 })
-export class HeroeComponent {
+export class HeroeComponent implements OnInit{
   heroe:HeroeModel=new HeroeModel();
 
 
-  constructor(private heroesService:HeroesService){}
+  constructor(private heroesService:HeroesService,
+    private route:ActivatedRoute)
+   {}
+ 
+  ngOnInit(){
+    const id=this.route.snapshot.paramMap.get('id');
 
+    if(id !='nuevo'){
+    /*   this.heroesService.getHeroe(id)
+      .subscribe((resp:HeroeModel)=>{
+        this.heroe=resp;
+        this.heroe.id;
+      }); */
+
+    }
+
+
+
+
+
+
+  }
   guardar(form: NgForm){
     if(form.invalid) {
       console.log('Formulario no valido');
