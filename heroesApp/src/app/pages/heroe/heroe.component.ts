@@ -26,13 +26,15 @@ export class HeroeComponent {
     }
 
 
-Swal.fire({
-  title:'espere',
-  text:'Guardando Informacion',
-  /* type:'info',
-  allowOutsideClick:false */
- 
-});
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando información',
+      icon: 'info',
+      allowOutsideClick: false,
+      showConfirmButton: false
+    });
+
+    Swal.showLoading();
 
 Swal.showLoading();
 let peticion:Observable<any>;
@@ -52,16 +54,13 @@ let peticion:Observable<any>;
 
 
 
-peticion.subscribe(resp=>{
-  Swal.fire({
-    title:this.heroe.nombre,
-    text:'Se actualizo correctmente',
-    /* type:'success',
-    allowOutsideClick:false */
-   
-  });
-  
-})
+    peticion.subscribe(resp =>{
+      Swal.fire({
+        title: this.heroe.nombre,
+        text: 'Se actualizo correctamente',
+        icon: 'success'
+      })
+    })
 
 
 
