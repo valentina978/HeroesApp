@@ -22,8 +22,22 @@ export class HeroesService {
                     
   }
 
+  actualizarHeroe( heroe: HeroeModel){
 
+    const heroeTemp = {
+     id: heroe.id,
+     nombre: heroe.nombre,
+     poder: heroe.poder,
+     vivo: heroe.vivo
+    };
+ 
+ 
+    return this.http.put(`${this.url}/heroes/${heroe.id}.json`,heroeTemp)
+ 
+   }
 
 
 
 }
+
+/* return this.http.put(`${this.url}/heroes/${heroe.id}.json`,heroeTemp) */

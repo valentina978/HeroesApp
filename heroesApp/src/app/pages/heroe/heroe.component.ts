@@ -21,13 +21,30 @@ export class HeroeComponent {
       console.log('Formulario no valido');
       return;
     }
-    this.heroesService.crearHeroe(this.heroe)
+
+     if(this.heroe.id){
+
+      this.heroesService.actualizarHeroe(this.heroe)
     .subscribe( resp =>{
       console.log(resp);
-      this.heroe=resp;
-
+     
     });
   
+     }else{
+      this.heroesService.crearHeroe(this.heroe)
+      .subscribe( resp =>{
+        console.log(resp);
+        this.heroe=resp;
+  
+      });
+    }
+
+
+
+
+
+
+
   
   
   
